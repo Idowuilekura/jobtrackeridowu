@@ -120,7 +120,7 @@ def welcome_page():
             """, unsafe_allow_html=True)
         
         with col3:
-            recent_count = con.execute("SELECT COUNT(*) FROM applications WHERE upload_date >= datediff('now', '-7 days')").fetchone()[0]
+            recent_count = con.execute("SELECT COUNT(*) FROM applications WHERE  upload_date >= CURRENT_DATE - INTERVAL 7 DAY;").fetchone()[0]
             st.markdown(f"""
             <div class="stat-card">
                 <h2 style="margin: 0; font-size: 2.5rem;">{recent_count}</h2>
